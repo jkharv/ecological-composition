@@ -40,11 +40,10 @@ sll[!, :instrument]  .= ""
 
 # Loop over each row, assigning intruments and parameters for sample playback.
 for row in eachrow(sll)
-    row.instrument = assign_intstruments(row) * string(rand(1:3))
     Random.seed!(hash(row.species))
-    r = rand()
-    row.delay  = r
-    row.speed  = (r * 2.5) - (r * 0.5)
+    row.instrument = assign_intstruments(row) * string(rand(1:3))
+    row.delay  = rand()
+    row.speed  = rand()
 end
 
 select!(sll, [:sample, :instrument, :delay, :speed])
